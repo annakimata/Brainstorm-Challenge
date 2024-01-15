@@ -1,0 +1,11 @@
+import numpy as np
+import scipy.stats as ss
+
+def artifact_rejection(signal):
+  grad = np.gradient(signal)
+  g_zs = ss.zscore(grad)
+  h_zs = ss.zscore(signal)
+  reject = np.logical_or(np.abs(g_zs) > 5, np.abs(h_zs > 5)
+  k = ss.kurtosis(signal)
+
+  return reject, k
